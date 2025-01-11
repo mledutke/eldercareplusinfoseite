@@ -4,46 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ElderCarePlus - Innovative Pflegeunterstützung</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4A90E2;
-            --secondary-color: #2C3E50;
-            --accent-color: #E74C3C;
-            --light-gray: #F5F6FA;
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --light-gray: #f8fafc;
+            --text-color: #334155;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
             line-height: 1.6;
-            color: #333;
+            color: var(--text-color);
+            overflow: hidden;
+        }
+
+        .section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: none;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .section.active {
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .section.prev {
+            transform: translateX(-100%);
         }
 
         .header {
-            background: linear-gradient(rgba(74, 144, 226, 0.9), rgba(44, 62, 80, 0.9));
+            background: linear-gradient(135deg, #2563eb, #1e40af);
             color: white;
-            padding: 2rem;
-            text-align: center;
-            height: 100vh;
+            padding: 6rem 2rem;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #ffffff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .header p {
-            font-size: 1.4rem;
+        .intro-text {
+            font-size: 1.25rem;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 2rem auto;
+            color: rgba(255, 255, 255, 0.95);
+            text-align: left;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+            transition: all 0.4s ease;
+        }
+
+        .highlight-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
 
         section {
@@ -54,6 +114,21 @@
             text-align: center;
             margin-bottom: 3rem;
             color: var(--secondary-color);
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
         }
 
         .features {
@@ -67,81 +142,163 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-bottom: 4rem;
         }
 
         .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .feature-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .why-us {
-            background: white;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .benefit-item {
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .ai-section {
-            background: var(--primary-color);
-            color: white;
-            text-align: center;
-        }
-
-        .ai-features {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .partnership {
-            background: var(--light-gray);
-            text-align: center;
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .cta-button {
             display: inline-block;
             padding: 1rem 2rem;
-            background: var(--accent-color);
-            color: white;
+            background: white;
+            color: var(--primary-color);
             text-decoration: none;
-            border-radius: 5px;
-            margin-top: 2rem;
-            font-weight: bold;
-            transition: background 0.3s ease;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid white;
         }
 
         .cta-button:hover {
-            background: #c0392b;
+            background: transparent;
+            color: white;
+        }
+
+        .why-us {
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            position: relative;
+        }
+
+        #why-us::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            padding: 2rem;
+            border-radius: 1.5rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .partnership {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #partnership::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .partnership-content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 2rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .partnership-list {
+            text-align: left;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            line-height: 2;
+        }
+
+        .partnership-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .partnership-list li::before {
+            content: '✓';
+            color: #4ade80;
+            font-weight: bold;
+        }
+
+        .partnership .cta-button {
+            font-size: 1.2rem;
+            padding: 1.2rem 3rem;
+            border-radius: 2rem;
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .partnership .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
         footer {
@@ -156,123 +313,640 @@
                 font-size: 2.5rem;
             }
             
+            .intro-text {
+                font-size: 1.1rem;
+                padding: 1.5rem;
+            }
+
             .features-grid, .benefits-grid {
                 grid-template-columns: 1fr;
             }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        .scroll-down {
+            display: none;
+        }
+
+        .navigation-controls {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            padding: 1rem 2rem;
+            background: rgba(37, 99, 235, 0.9);
+            color: white;
+            border: none;
+            border-radius: 3rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s ease;
+        }
+
+        .nav-btn:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(37, 99, 235, 1);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .progress-dots {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 0.5rem;
+            border-radius: 2rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(37, 99, 235, 0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dot.active {
+            background: rgb(37, 99, 235);
+            border-color: white;
+            transform: scale(1.4);
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+        }
+
+        #header {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+        }
+
+        #features {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            padding: 2rem;
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .features-section-title {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .features-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .features-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            color: var(--secondary-color);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .feature-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        #why-us {
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+        }
+
+        #partnership {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+        }
+
+        .intro-text, .highlight-box, .feature-card, .benefit-item, .partnership-content, .progress-dots, .nav-btn {
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <h1>ElderCarePlus</h1>
-        <p>Die moderne Pflegesoftware mit KI-Unterstützung</p>
-        <a href="#kontakt" class="cta-button">Kostenlose Testphase starten</a>
+    <header class="header section" id="header">
+        <div class="header-content">
+            <h1>ElderCarePlus</h1>
+            <p>Die benutzerfreundlichste und günstigste Pflegesoftware</p>
+            
+            <div class="intro-text">
+                <p>Sehr geehrte Pflegedienstleiter und Heimleitungen,</p>
+                <br>
+                <p>Kennen Sie das? Komplizierte Pflegesoftware, die mehr Zeit kostet als spart? Teure Module, die Sie eigentlich gar nicht brauchen? Wir auch - deshalb haben wir ElderCarePlus entwickelt.</p>
+                <br>
+                <p>Unsere Mission ist einfach: Die benutzerfreundlichste und kostengünstigste Pflegesoftware auf dem Markt anzubieten. Keine versteckten Kosten, keine komplizierten Module - einfach eine Software, die Ihren Alltag wirklich erleichtert.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Warum wir anders sind:</strong></p>
+                    <p>• Bis zu 70% günstiger als vergleichbare Systeme<br>
+                    • Intuitive Bedienung - auch für nicht-technikaffine Mitarbeiter<br>
+                    • Alle Funktionen inklusive - keine zusätzlichen Module nötig<br>
+                    • Modernste KI-Unterstützung für effizienteres Arbeiten</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-down">
+            <span>Scrollen Sie nach unten</span>
+            <br>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+            </svg>
+        </div>
     </header>
 
-    <section class="features" id="features">
-        <h2 class="section-title">Unsere Features</h2>
+    <section class="features section" id="features">
+        <h2 class="features-section-title">Alle Features im Überblick</h2>
+        
         <div class="features-container">
-            <h3 style="text-align: center; margin-bottom: 2rem;">Für die Verwaltung</h3>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Facility Management</h3>
-                    <p>Effiziente Verwaltung aller Einrichtungsressourcen und Prozesse.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Dienstplangestaltung</h3>
-                    <p>Intelligente Planung und Verwaltung von Arbeitszeiten und Schichten.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Rechnungsmanagement</h3>
-                    <p>Automatisierte Abrechnung und Finanzverwaltung.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Ressourcenplanung</h3>
-                    <p>Optimierte Verwaltung von Personal und Material.</p>
+            <div class="features-category">
+                <h3 class="category-title">Kernfunktionen</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <div class="feature-tag">Zentral</div>
+                        <h3>Patientenverwaltung</h3>
+                        <p>• Listen- und Tabellenansicht<br>
+                           • Einfaches Hinzufügen und Bearbeiten<br>
+                           • Übersichtliche Patientenakten<br>
+                           • Schnelle Suchfunktion</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📋</div>
+                        <div class="feature-tag">Effizient</div>
+                        <h3>Pflegeberichte</h3>
+                        <p>• Digitale Dokumentation<br>
+                           • Vorlagen und Textbausteine<br>
+                           • Automatische Speicherung<br>
+                           • Rechtssichere Archivierung</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💊</div>
+                        <div class="feature-tag">Sicher</div>
+                        <h3>Medikamentenverwaltung</h3>
+                        <p>• Digitaler Medikamentenplan<br>
+                           • Wechselwirkungsprüfung<br>
+                           • Automatische Erinnerungen<br>
+                           • Bestandsverwaltung</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📅</div>
+                        <div class="feature-tag">Flexibel</div>
+                        <h3>Schichtplanung</h3>
+                        <p>• Intelligente Dienstplanung<br>
+                           • Urlaubsmanagement<br>
+                           • Qualifikationsberücksichtigung<br>
+                           • Mobile Einsicht</p>
+                    </div>
                 </div>
             </div>
 
-            <h3 style="text-align: center; margin: 3rem 0 2rem;">Für das Pflegepersonal</h3>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Digitale Dokumentation</h3>
-                    <p>Schnelle und einfache Erfassung aller Pflegemaßnahmen.</p>
+            <div class="features-category">
+                <h3 class="category-title">KI & Intelligente Funktionen</h3>
+                <div class="features-grid">
+                    <div class="feature-card premium">
+                        <div class="feature-icon">🤖</div>
+                        <div class="feature-tag">Premium</div>
+                        <h3>AI-Nurse Assistent</h3>
+                        <p>• Sofortige medizinische Auskunft<br>
+                           • KI-gestützte Pflegehinweise<br>
+                           • 24/7 verfügbar<br>
+                           • Kontinuierliches Learning</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">✅</div>
+                        <div class="feature-tag">Organisiert</div>
+                        <h3>Aufgabenmanagement</h3>
+                        <p>• To-Do Listen<br>
+                           • Fortschrittsverfolgung<br>
+                           • Team-Koordination<br>
+                           • Priorisierung</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-tag">Analytisch</div>
+                        <h3>KI-Analysen</h3>
+                        <p>• Automatische Berichtgenerierung<br>
+                           • Trendanalysen<br>
+                           • Ressourcenoptimierung<br>
+                           • Qualitätssicherung</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-tag">Präzise</div>
+                        <h3>Prognose-Tools</h3>
+                        <p>• Personalbedarfsvorhersage<br>
+                           • Materialverbrauchsanalyse<br>
+                           • Kostenprognosen<br>
+                           • Auslastungsvorhersage</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <h3>Medikamentenmanagement</h3>
-                    <p>Sichere Verwaltung und Erinnerung an Medikamentengaben.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Wundmanagement</h3>
-                    <p>Digitale Wunddokumentation mit Foto-Upload.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Mobile Zeiterfassung</h3>
-                    <p>Einfache Arbeitszeiterfassung per Smartphone.</p>
+            </div>
+
+            <div class="features-category">
+                <h3 class="category-title">Gesundheit & Pflege</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">❤️</div>
+                        <div class="feature-tag">Umfassend</div>
+                        <h3>Gesundheitsmonitoring</h3>
+                        <p>• Vitalzeichenüberwachung<br>
+                           • Schmerzmanagement<br>
+                           • Ernährungsplanung<br>
+                           • Individuelle Pflegepläne</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <div class="feature-tag">Hilfreich</div>
+                        <h3>Ressourcen-Center</h3>
+                        <p>• Video-Tutorials<br>
+                           • Pflegeanleitungen<br>
+                           • Best Practices<br>
+                           • Schulungsmaterialien</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <div class="feature-tag">Vernetzt</div>
+                        <h3>Mobile App</h3>
+                        <p>• Offline-Verfügbarkeit<br>
+                           • Push-Benachrichtigungen<br>
+                           • Schnellzugriff<br>
+                           • Synchronisation</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <div class="feature-tag">Integration</div>
+                        <h3>Schnittstellen</h3>
+                        <p>• Krankenhaus-Systeme<br>
+                           • Abrechnungssysteme<br>
+                           • Externe Dienstleister<br>
+                           • Datenaustausch</p>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <style>
+            .features-container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 2rem;
+            }
+
+            .feature-card {
+                background: white;
+                padding: 2rem;
+                border-radius: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+                border: 1px solid rgba(37, 99, 235, 0.1);
+                position: relative;
+            }
+
+            .feature-card.premium {
+                background: linear-gradient(145deg, #ffffff, #f8faff);
+                border: 2px solid var(--primary-color);
+            }
+
+            .feature-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 35px rgba(37, 99, 235, 0.1);
+            }
+
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 1rem;
+                color: white;
+                font-size: 1.5rem;
+            }
+
+            .feature-card p {
+                color: #64748b;
+                line-height: 1.8;
+                font-size: 1rem;
+                margin-top: 1rem;
+            }
+
+            .feature-tag {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: rgba(37, 99, 235, 0.1);
+                color: var(--primary-color);
+                padding: 0.3rem 0.8rem;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+
+            .premium .feature-tag {
+                background: var(--primary-color);
+                color: white;
+            }
+
+            .features-category {
+                margin-bottom: 4rem;
+            }
+
+            .category-title {
+                font-size: 2rem;
+                color: var(--secondary-color);
+                text-align: center;
+                margin-bottom: 2.5rem;
+                position: relative;
+            }
+
+            .category-title::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60px;
+                height: 3px;
+                background: var(--primary-color);
+                border-radius: 3px;
+            }
+        </style>
     </section>
 
-    <section class="ai-section">
-        <h2 class="section-title" style="color: white;">KI-Unterstützung</h2>
-        <div class="ai-features">
-            <p>Unsere innovative KI unterstützt Sie bei:</p>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>CareReport</h3>
-                    <p>Automatische Generierung von Pflegeberichten mit KI-Unterstützung.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Intelligente To-Do-Listen</h3>
-                    <p>KI-basierte Priorisierung und Optimierung der Arbeitsabläufe.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Abrechnungsassistent</h3>
-                    <p>KI-gestützte Hilfe bei der Erstellung und Prüfung von Abrechnungen.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="why-us">
+    <section class="why-us section" id="why-us">
         <h2 class="section-title">Warum ElderCarePlus?</h2>
         <div class="benefits-grid">
             <div class="benefit-item">
-                <h3>Transparente Preise</h3>
-                <p>Faire Abrechnung nach Patientenanzahl, keine versteckten Kosten.</p>
+                <h3>Unschlagbarer Preis</h3>
+                <p>Bis zu 70% günstiger als die Konkurrenz. Faire Abrechnung nach Patientenanzahl.</p>
             </div>
             <div class="benefit-item">
-                <h3>All-Inclusive</h3>
-                <p>Alle Features inklusive - keine zusätzlichen Module nötig.</p>
+                <h3>Einfache Bedienung</h3>
+                <p>Intuitiv und selbsterklärend. Minimale Einarbeitungszeit für Ihre Mitarbeiter.</p>
             </div>
             <div class="benefit-item">
-                <h3>Plattformübergreifend</h3>
-                <p>Verfügbar für iOS, Android und als Webanwendung.</p>
+                <h3>Alles inklusive</h3>
+                <p>Keine versteckten Kosten oder Zusatzmodule. Sie erhalten sofort Zugriff auf alle Funktionen.</p>
             </div>
             <div class="benefit-item">
-                <h3>Höchste Sicherheit</h3>
-                <p>Modernste Verschlüsselung und sichere Serverinfrastruktur.</p>
+                <h3>Überall verfügbar</h3>
+                <p>Nutzen Sie die Software auf allen Geräten - iOS, Android und im Browser.</p>
             </div>
             <div class="benefit-item">
                 <h3>Kostenlose Migration</h3>
-                <p>Wir übernehmen die Übertragung Ihrer bestehenden Daten.</p>
+                <p>Unkomplizierter Wechsel: Wir übernehmen die komplette Datenübernahme für Sie.</p>
             </div>
             <div class="benefit-item">
-                <h3>Vor-Ort-Support</h3>
-                <p>Persönliche Betreuung und Schulung im Raum München.</p>
+                <h3>Persönlicher Support</h3>
+                <p>Direkter Support und kostenlose Einweisung vor Ort im Raum München.</p>
             </div>
         </div>
     </section>
 
-    <section class="partnership">
-        <h2 class="section-title">Werden Sie Partnerkunde</h2>
-        <p>Testen Sie ElderCarePlus die ersten Monate kostenlos und profitieren Sie von dauerhaften Rabatten als einer unserer ersten Partner.</p>
-        <a href="#kontakt" class="cta-button">Partnerschaft anfragen</a>
+    <section class="partnership section" id="partnership">
+        <div class="partnership-content">
+            <h2 class="section-title">Werden Sie Innovationspartner</h2>
+            <div class="partnership-list">
+                <p>Profitieren Sie als einer unserer ersten Partner von einmaligen Vorteilen:</p>
+                <ul>
+                    <li>Kostenfreie Testphase ohne Verpflichtungen</li>
+                    <li>Bis zu 50% Rabatt auf unsere ohnehin günstigen Preise</li>
+                    <li>Priorisierter Support und kostenlose Vor-Ort-Einweisung</li>
+                    <li>Direkter Einfluss auf die Weiterentwicklung der Software</li>
+                    <li>Keine Vertragsbindung während der Testphase</li>
+                </ul>
+            </div>
+            <a href="#kontakt" class="cta-button">Jetzt kostenlos testen</a>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 ElderCarePlus. Alle Rechte vorbehalten.</p>
+        <p>&copy; 2024 ElderCarePlus. Innovative Pflegesoftware made in Germany.</p>
     </footer>
+
+    <div class="navigation-controls">
+        <button class="nav-btn" id="prev-btn" disabled>Zurück</button>
+        <button class="nav-btn" id="next-btn">Weiter</button>
+    </div>
+
+    <div class="progress-dots">
+        <div class="dot active" data-section="header"></div>
+        <div class="dot" data-section="features"></div>
+        <div class="dot" data-section="why-us"></div>
+        <div class="dot" data-section="partnership"></div>
+    </div>
+
+    <div class="cursor-effect"></div>
+
+    <script>
+        const sections = ['header', 'features', 'why-us', 'partnership'];
+        let currentIndex = 0;
+
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const dots = document.querySelectorAll('.dot');
+
+        function updateNavigation() {
+            // Update buttons
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === sections.length - 1;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+
+            // Zeige aktuelle Sektion und verstecke andere
+            sections.forEach((sectionId, index) => {
+                const section = document.getElementById(sectionId);
+                if (index === currentIndex) {
+                    section.style.display = 'flex';
+                    section.classList.add('active');
+                } else {
+                    section.style.display = 'none';
+                    section.classList.remove('active');
+                }
+            });
+
+            // Update next button text
+            nextBtn.textContent = currentIndex === sections.length - 1 ? 'Kontakt' : 'Weiter';
+        }
+
+        // Navigation buttons
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateNavigation();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < sections.length - 1) {
+                currentIndex++;
+                updateNavigation();
+            }
+        });
+
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                updateNavigation();
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentIndex < sections.length - 1) {
+                currentIndex++;
+                updateNavigation();
+            }
+            if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                currentIndex--;
+                updateNavigation();
+            }
+        });
+
+        // Initialisierung: Erste Sektion anzeigen
+        document.addEventListener('DOMContentLoaded', () => {
+            updateNavigation();
+        });
+
+        // Cursor-Effekt
+        const cursor = document.querySelector('.cursor-effect');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Hover-Effekt für interaktive Elemente
+        document.querySelectorAll('a, button, .feature-card, .benefit-item').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.borderColor = 'rgba(37, 99, 235, 0.5)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.borderColor = 'var(--primary-color)';
+            });
+        });
+    </script>
 </body>
 </html> 
