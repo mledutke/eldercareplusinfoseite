@@ -1,0 +1,334 @@
+.partnership {
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.partnership::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.4) 0%, transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(30, 64, 175, 0.4) 0%, transparent 30%);
+    animation: pulseGlow 8s ease-in-out infinite alternate;
+}
+
+/* Animated network lines */
+.partnership::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px) 0 0 / 50px 50px,
+        linear-gradient(0deg, rgba(255,255,255,0.1) 1px, transparent 1px) 0 0 / 50px 50px;
+    animation: moveGrid 20s linear infinite;
+}
+
+/* Floating particles */
+.partnership-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at center, rgba(255,255,255,0.1) 2px, transparent 2px),
+        radial-gradient(circle at center, rgba(255,255,255,0.15) 1px, transparent 1px);
+    background-size: 40px 40px, 30px 30px;
+    animation: floatParticles 15s linear infinite;
+}
+
+.partnership-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Interactive hover effect for container */
+.partnership-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.partnership-section-title {
+    font-size: 2.8rem;
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    display: inline-block;
+}
+
+/* Glowing effect for title */
+.partnership-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 2px;
+    animation: glowLine 2s ease-in-out infinite;
+}
+
+.title-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.decoration-line {
+    width: 60px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.decoration-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    animation: shimmer 2s infinite;
+}
+
+.decoration-icon {
+    color: white;
+    font-size: 1.8rem;
+    animation: bounce 2s ease infinite;
+}
+
+.partnership-offer {
+    text-align: center;
+}
+
+.partnership-offer > p {
+    font-size: 1.2rem;
+    color: white;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.offer-details {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+    flex-wrap: nowrap;
+    padding: 0 2rem;
+}
+
+.offer-point {
+    flex: 1;
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    min-width: 250px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.offer-point::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.offer-point:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.offer-point:hover::before {
+    transform: translateX(100%);
+}
+
+.point-icon {
+    width: 70px;
+    height: 70px;
+    background: #f0f9ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #3b82f6;
+    transition: all 0.3s ease;
+}
+
+.offer-point:hover .point-icon {
+    transform: scale(1.1) rotate(10deg);
+    background: #3b82f6;
+    color: white;
+}
+
+.offer-point h3 {
+    color: #1e40af;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.offer-point p {
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.appointment-scheduling {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.appointment-scheduling h3 {
+    color: #1e40af;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.appointment-scheduling iframe {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+    .offer-details {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .offer-point {
+        flex: 0 1 calc(50% - 1.5rem);
+        max-width: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .partnership-section-title {
+        font-size: 2.2rem;
+    }
+    
+    .offer-point {
+        flex: 0 1 100%;
+    }
+    
+    .partnership-offer > p {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+}
+
+@keyframes pulseGlow {
+    0% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes moveGrid {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(50px, 50px);
+    }
+}
+
+@keyframes floatParticles {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+    100% {
+        background-position: 100px 100px, -100px -100px;
+    }
+}
+
+@keyframes glowLine {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+}
+
+@keyframes shimmer {
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
