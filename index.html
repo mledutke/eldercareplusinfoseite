@@ -210,86 +210,241 @@
         }
 
         .features {
-            background: var(--light-gray);
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 1rem;
         }
 
         .features-container {
-            max-width: 1400px;
+            max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(37, 99, 235, 0.1);
+            padding: 1rem;
             position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            z-index: 1;
         }
 
-        .feature-card::before {
-            content: '';
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .features-section-title {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .title-decoration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+
+        .decoration-line {
+            height: 2px;
+            width: 40px;
+            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+        }
+
+        .decoration-icon {
+            font-size: 1.2rem;
+            margin: 0 0.5rem;
+        }
+
+        .partnership-offer {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .offer-text {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .offer-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .offer-point:nth-child(4),
+        .offer-point:nth-child(5) {
+            grid-column: 2 span 1;
+        }
+
+        .offer-point {
+            position: relative;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .point-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .offer-point h3 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .offer-point p {
+            color: var(--text-color);
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .hover-info {
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            padding: 0.75rem;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.95), transparent);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            text-align: center;
         }
 
-        .feature-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: white;
+        .info-text {
             color: var(--primary-color);
-            text-decoration: none;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid white;
+            font-weight: 500;
+            font-size: 0.9rem;
         }
 
-        .cta-button:hover {
-            background: transparent;
-            color: white;
-        }
-
-        .why-us {
-            background: linear-gradient(135deg, #ffffff, #f8fafc);
-            position: relative;
-        }
-
-        #why-us::before {
-            content: '';
+        .offer-point.highlight-point::after {
+            content: '★ Premium';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            top: 0.75rem;
+            right: 0.75rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Extra kleine Geräte (Phones, 600px and down) */
+        @media only screen and (max-width: 600px) {
+            .features-section-title {
+                font-size: 1.8rem;
+            }
+
+            .offer-text {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .partnership-offer {
+                padding: 1rem;
+            }
+
+            .offer-point {
+                padding: 1rem;
+            }
+
+            .offer-details {
+                grid-template-columns: 1fr;
+            }
+
+            .point-icon {
+                font-size: 1.3rem;
+            }
+
+            .offer-point h3 {
+                font-size: 1rem;
+            }
+
+            .offer-point p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Kleine Geräte (portrait tablets and large phones, 600px and up) */
+        @media only screen and (min-width: 600px) {
+            .offer-details {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        /* Medium Geräte (landscape tablets, 768px and up) */
+        @media only screen and (min-width: 768px) {
+            .features-section-title {
+                font-size: 2rem;
+            }
+
+            .partnership-offer {
+                padding: 2rem;
+            }
+        }
+
+        /* Große Geräte (laptops/desktops, 992px and up) */
+        @media only screen and (min-width: 992px) {
+            .features-container {
+                padding: 2rem;
+            }
+
+            .offer-details {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        /* Extra große Geräte (large laptops and desktops, 1200px and up) */
+        @media only screen and (min-width: 1200px) {
+            .features-section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media only screen and (max-width: 992px) {
+            .offer-details {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .offer-point:nth-child(4),
+            .offer-point:nth-child(5) {
+                grid-column: auto;
+            }
+        }
+
+        [data-aos] {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        [data-aos].aos-animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .benefit-item {
@@ -321,10 +476,9 @@
         .partnership {
             background: linear-gradient(135deg, #2563eb, #1e40af);
             position: relative;
-            overflow: hidden;
         }
 
-        #partnership::before {
+        #why-us::before {
             content: '';
             position: absolute;
             top: 0;
@@ -1070,72 +1224,280 @@
         .section::-webkit-scrollbar-thumb:hover {
             background: rgba(37, 99, 235, 0.7);
         }
+
+        .navigation-hint {
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+        }
+
+        .partnership-offer {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .offer-text {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .offer-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .offer-point {
+            padding: 1.5rem;
+            background: rgba(37, 99, 235, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .offer-point:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .offer-point h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .offer-point p {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .offer-point.highlight-point {
+            background: rgba(37, 99, 235, 0.08);
+            border: 2px solid rgba(37, 99, 235, 0.2);
+        }
+
+        .offer-point.highlight-point h3 {
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .features-section-title {
+                font-size: 2.2rem;
+                margin-bottom: 2rem;
+            }
+
+            .offer-text {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+            }
+
+            .partnership-offer {
+                padding: 1.5rem;
+            }
+
+            .offer-point {
+                padding: 1.2rem;
+            }
+
+            .offer-point h3 {
+                font-size: 1.2rem;
+            }
+
+            .offer-point p {
+                font-size: 1rem;
+            }
+        }
+
+        .why-us {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            min-height: 100vh;
+            padding: 4rem 1rem;
+        }
+
+        .why-us-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
+        }
+
+        .feature-card.highlight {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(37, 99, 235, 0.02));
+            border: 2px solid rgba(37, 99, 235, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: var(--text-color);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+        .vs-badge {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0.75rem;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.9) 20%);
+            font-size: 0.9rem;
+        }
+
+        .vs-badge span {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .vs-badge p {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .cta-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            display: inline-block;
+        }
+
+        .cta-box h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .why-us {
+                padding: 2rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                padding: 1.25rem;
+            }
+
+            .feature-icon {
+                font-size: 1.5rem;
+            }
+
+            .feature-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .feature-card p {
+                font-size: 0.9rem;
+            }
+
+            .cta-box {
+                padding: 1.5rem;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
     <header class="header section" id="header">
         <div class="header-content">
             <div class="logo-container">
-                <div class="logo-circle">
-                    <span class="logo-text">E+</span>
-                    <div class="logo-rings"></div>
-                </div>
+                <img src="assets/logo.png" alt="ElderCarePlus Logo" class="logo-image">
             </div>
             <h1>ElderCarePlus</h1>
-            <p class="tagline">Die benutzerfreundlichste und günstigste Pflegesoftware</p>
             
             <div class="intro-container">
                 <div class="intro-text">
-                    <div class="intro-header">
-                        <span class="intro-icon">👋</span>
-                        <p class="greeting">Sehr geehrte Pflegedienstleiter und Heimleitungen,</p>
-                    </div>
-                    <p>Kennen Sie das? Komplizierte Pflegesoftware, die mehr Zeit kostet als spart? Teure Module, die Sie eigentlich gar nicht brauchen?</p>
-                    <div class="solution-box">
-                        <span class="solution-icon">💡</span>
-                        <p>Wir haben die Lösung: ElderCarePlus - entwickelt von Pflegeprofis für Pflegeprofis.</p>
-                    </div>
-                    <p>Unsere Mission ist einfach: Die benutzerfreundlichste und kostengünstigste Pflegesoftware auf dem Markt anzubieten. Keine versteckten Kosten, keine komplizierten Module - einfach eine Software, die Ihren Alltag wirklich erleichtert.</p>
-                </div>
-                
-                <div class="highlight-box">
-                    <div class="highlight-header">
-                        <div class="highlight-title">
-                            <span class="highlight-icon">⭐</span>
-                            <h3>Warum wir anders sind</h3>
-                        </div>
-                        <div class="highlight-badge">Exklusiv</div>
-                    </div>
-                    <div class="highlight-points">
-                        <div class="highlight-point">
-                            <span class="point-icon">💰</span>
-                            <div class="point-content">
-                                <h4>Kosteneffizient</h4>
-                                <p>Bis zu 70% günstiger als vergleichbare Systeme</p>
-                            </div>
-                        </div>
-                        <div class="highlight-point">
-                            <span class="point-icon">🎯</span>
-                            <div class="point-content">
-                                <h4>Benutzerfreundlich</h4>
-                                <p>Intuitive Bedienung - auch für nicht-technikaffine Mitarbeiter</p>
-                            </div>
-                        </div>
-                        <div class="highlight-point">
-                            <span class="point-icon">✨</span>
-                            <div class="point-content">
-                                <h4>All-Inclusive</h4>
-                                <p>Alle Funktionen inklusive - keine zusätzlichen Module nötig</p>
-                            </div>
-                        </div>
-                        <div class="highlight-point">
-                            <span class="point-icon">🤖</span>
-                            <div class="point-content">
-                                <h4>KI-Unterstützung</h4>
-                                <p>Modernste KI-Unterstützung für effizienteres Arbeiten</p>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="greeting">Sehr geehrte Pflegedienstleiter und Heimleitungen,</p>
+                    <p>wir sind ElderCarePlus - ein junges, dynamisches Unternehmen aus München, Bayern. Gegründet mit einer klaren Vision: Die Pflegebranche zu revolutionieren.</p>
+                    <p>Wir haben es uns zur Aufgabe gemacht, veraltete Pflegesoftware durch moderne, benutzerfreundliche Lösungen zu ersetzen. Unsere Software wurde von Grund auf neu entwickelt, um den täglichen Anforderungen in der Pflege gerecht zu werden.</p>
+                    <p class="navigation-hint">Nutzen Sie die Navigation unten, um in den nächsten Slides mehr über uns und unsere innovative Lösung zu erfahren.</p>
                 </div>
             </div>
         </div>
@@ -1145,421 +1507,665 @@
                 background: linear-gradient(135deg, #2563eb, #1e40af);
                 position: relative;
                 overflow-x: hidden;
-            }
-
-            .header::before {
-                content: '';
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.3), transparent 60%),
-                            radial-gradient(circle at bottom left, rgba(30, 64, 175, 0.3), transparent 60%);
-                pointer-events: none;
-            }
-
-            .logo-container {
-                position: relative;
-                margin-bottom: 2rem;
-            }
-
-            .logo-circle {
-                width: 90px;
-                height: 90px;
-                background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-                border-radius: 50%;
+                min-height: 100vh;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+            }
+
+            .header-content {
+                max-width: 1200px;
                 margin: 0 auto;
-                position: relative;
-                box-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
-                border: 3px solid rgba(255, 255, 255, 0.2);
-                animation: pulse 2s infinite;
+                padding: 2rem;
+                text-align: center;
             }
 
-            .logo-rings {
-                position: absolute;
-                width: 120%;
-                height: 120%;
-                border: 2px solid rgba(255, 255, 255, 0.1);
-                border-radius: 50%;
-                animation: rotate 10s linear infinite;
+            .logo-container {
+                margin-bottom: 2rem;
             }
 
-            .logo-rings::before,
-            .logo-rings::after {
-                content: '';
-                position: absolute;
-                width: 110%;
-                height: 110%;
-                border: 2px solid rgba(255, 255, 255, 0.1);
-                border-radius: 50%;
-                left: -5%;
-                top: -5%;
-            }
-
-            .logo-rings::after {
-                width: 120%;
-                height: 120%;
-                left: -10%;
-                top: -10%;
-                animation: rotate 15s linear infinite reverse;
-            }
-
-            @keyframes rotate {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-
-            @keyframes pulse {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.05); }
-                100% { transform: scale(1); }
-            }
-
-            .logo-text {
-                color: white;
-                font-size: 2.5rem;
-                font-weight: bold;
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            .logo-image {
+                max-width: 200px;
+                height: auto;
             }
 
             .header h1 {
-                font-size: 5rem;
+                font-size: 4rem;
                 font-weight: 800;
-                margin-bottom: 1rem;
-                background: linear-gradient(to right, #ffffff, #e2e8f0);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-            }
-
-            .tagline {
-                font-size: 1.6rem;
-                color: rgba(255, 255, 255, 0.95);
                 margin-bottom: 3rem;
-                font-weight: 500;
-                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                color: white;
             }
 
             .intro-container {
                 display: flex;
-                gap: 3rem;
-                align-items: flex-start;
                 justify-content: center;
-                flex-wrap: wrap;
-                margin-top: 2rem;
             }
 
             .intro-text {
-                flex: 1;
-                min-width: 300px;
-                max-width: 600px;
+                max-width: 800px;
                 background: rgba(255, 255, 255, 0.1);
                 border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 24px;
                 padding: 2.5rem;
                 color: rgba(255, 255, 255, 0.9);
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 line-height: 1.7;
-                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+                text-align: left;
             }
 
-            .intro-header {
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .intro-icon {
-                font-size: 2rem;
-            }
-
-            .solution-box {
-                background: rgba(255, 255, 255, 0.15);
-                border-radius: 16px;
-                padding: 1.5rem;
-                margin: 1.5rem 0;
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .solution-icon {
-                font-size: 1.8rem;
-            }
-
-            .highlight-box {
-                flex: 1;
-                min-width: 300px;
-                max-width: 600px;
-                background: rgba(255, 255, 255, 0.15);
-                border-radius: 24px;
-                padding: 2.5rem;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-            }
-
-            .highlight-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 2rem;
-            }
-
-            .highlight-title {
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .highlight-badge {
-                background: rgba(255, 255, 255, 0.2);
-                color: white;
-                padding: 0.5rem 1rem;
-                border-radius: 20px;
-                font-size: 0.9rem;
+            .greeting {
+                font-size: 1.4rem;
                 font-weight: 500;
-            }
-
-            .highlight-points {
-                display: grid;
-                gap: 1.2rem;
-            }
-
-            .highlight-point {
-                background: rgba(255, 255, 255, 0.1);
-                padding: 1.2rem;
-                border-radius: 16px;
-                display: flex;
-                align-items: flex-start;
-                gap: 1rem;
-                transition: all 0.3s ease;
-            }
-
-            .highlight-point:hover {
-                transform: translateX(10px);
-                background: rgba(255, 255, 255, 0.2);
-            }
-
-            .point-icon {
-                font-size: 1.6rem;
-                min-width: 40px;
-            }
-
-            .point-content h4 {
+                margin-bottom: 1.5rem;
                 color: white;
-                margin: 0 0 0.3rem 0;
-                font-size: 1.1rem;
-            }
-
-            .point-content p {
-                margin: 0;
-                color: rgba(255, 255, 255, 0.9);
-                font-size: 1rem;
             }
 
             @media (max-width: 768px) {
                 .header h1 {
-                    font-size: 3rem;
+                    font-size: 2.5rem;
                 }
                 
-                .tagline {
+                .intro-text {
+                    padding: 1.5rem;
+                    font-size: 1.1rem;
+                }
+
+                .greeting {
                     font-size: 1.2rem;
-                }
-
-                .intro-container {
-                    gap: 2rem;
-                }
-
-                .intro-text, 
-                .highlight-box {
-                    padding: 2rem;
                 }
             }
         </style>
     </header>
 
     <section class="features section" id="features">
-        <h2 class="features-section-title">Alle Features im Überblick</h2>
-        
         <div class="features-container">
-            <div class="features-category">
-                <h3 class="category-title">Kernfunktionen</h3>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">👥</div>
-                        <h3>Patientenverwaltung</h3>
-                        <p>• Listen- und Tabellenansicht für optimale Übersicht<br>
-                           • Einfaches Hinzufügen und Bearbeiten von Patientendaten<br>
-                           • Übersichtliche digitale Patientenakten<br>
-                           • Intelligente Suchfunktion für schnellen Zugriff</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📋</div>
-                        <h3>Pflegeberichte</h3>
-                        <p>• Digitale Dokumentation mit Vorlagen<br>
-                           • Intelligente Textbausteine für schnelles Arbeiten<br>
-                           • Automatische Speicherung aller Änderungen<br>
-                           • Rechtssichere digitale Archivierung</p>
-                    </div>
+            <div class="section-header">
+                <h2 class="features-section-title">Werden Sie unser Innovationspartner!</h2>
+                <div class="title-decoration">
+                    <span class="decoration-line"></span>
+                    <span class="decoration-icon">🤝</span>
+                    <span class="decoration-line"></span>
                 </div>
             </div>
+            
+            <div class="partnership-offer">
+                <div class="offer-content">
+                    <p class="offer-text">Wir suchen Partnereinrichtungen, die bereit sind, mit uns zu kooperieren und unsere innovative Pflegesoftware zu testen.</p>
+                    
+                    <div class="offer-details">
+                        <div class="offer-point" data-aos="fade-up" data-aos-delay="100">
+                            <div class="point-icon">🎁</div>
+                            <h3>Kostenlos & Unverbindlich</h3>
+                            <p>Testen Sie unsere Software völlig kostenfrei und ohne jegliche Verpflichtungen. Als Dankeschön erhalten Sie später dauerhaft attraktive Nachlässe.</p>
+                            <div class="hover-info">
+                                <span class="info-text">Keine versteckten Kosten</span>
+                            </div>
+                        </div>
+                        
+                        <div class="offer-point" data-aos="fade-up" data-aos-delay="200">
+                            <div class="point-icon">⚡</div>
+                            <h3>Minimaler Zeitaufwand</h3>
+                            <p>Wir wissen, wie wertvoll Ihre Zeit ist. Der Testaufwand wird minimal gehalten und Sie profitieren von unserer agilen Entwicklung.</p>
+                            <div class="hover-info">
+                                <span class="info-text">Schnelle Integration</span>
+                            </div>
+                        </div>
+                        
+                        <div class="offer-point" data-aos="fade-up" data-aos-delay="300">
+                            <div class="point-icon">🤝</div>
+                            <h3>Persönliche Betreuung</h3>
+                            <p>Wir suchen einen Partner vor Ort und stellen uns und die Software persönlich vor. Sie haben einen direkten Draht zu unserem Entwicklungsteam.</p>
+                            <div class="hover-info">
+                                <span class="info-text">Direkter Kontakt</span>
+                            </div>
+                        </div>
+                        
+                        <div class="offer-point" data-aos="fade-up" data-aos-delay="400">
+                            <div class="point-icon">🎯</div>
+                            <h3>Aktive Mitgestaltung</h3>
+                            <p>Ihr Feedback fließt direkt in die Entwicklung ein. Durch unsere schnelle Entwicklungszeit sehen Sie Ihre Wünsche zeitnah umgesetzt.</p>
+                            <div class="hover-info">
+                                <span class="info-text">Ihre Ideen zählen</span>
+                            </div>
+                        </div>
 
-            <div class="features-category">
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">💊</div>
-                        <h3>Medikamentenverwaltung</h3>
-                        <p>• Digitaler Medikamentenplan mit Erinnerungen<br>
-                           • Automatische Wechselwirkungsprüfung<br>
-                           • Bestandsverwaltung und Nachbestellung<br>
-                           • Dokumentation der Medikamentengabe</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📅</div>
-                        <h3>Schichtplanung</h3>
-                        <p>• Intelligente Dienstplanerstellung<br>
-                           • Integriertes Urlaubsmanagement<br>
-                           • Berücksichtigung von Qualifikationen<br>
-                           • Mobile Einsicht für alle Mitarbeiter</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="features-category">
-                <h3 class="category-title">KI & Intelligente Funktionen</h3>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🤖</div>
-                        <h3>AI-Nurse Assistent</h3>
-                        <p>• 24/7 KI-gestützte medizinische Auskunft<br>
-                           • Intelligente Pflegehinweise und Empfehlungen<br>
-                           • Kontinuierliches Lernen aus Erfahrungen<br>
-                           • Unterstützung bei Dokumentation</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">✅</div>
-                        <h3>Aufgabenmanagement</h3>
-                        <p>• Digitale To-Do Listen für Teams<br>
-                           • Echtzeit-Fortschrittsverfolgung<br>
-                           • Effiziente Team-Koordination<br>
-                           • Automatische Priorisierung</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <style>
+            .features {
+                background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                position: relative;
+                overflow: hidden;
+                padding: 1rem;
+            }
+
             .features-container {
+                max-width: 1200px;
+                width: 100%;
+                margin: 0 auto;
+                padding: 1rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .features-section-title {
+                font-size: 2.5rem;
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-align: center;
+                margin-bottom: 0.5rem;
+                font-weight: 700;
+            }
+
+            .title-decoration {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 0.5rem;
+            }
+
+            .decoration-line {
+                height: 2px;
+                width: 40px;
+                background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+            }
+
+            .decoration-icon {
+                font-size: 1.2rem;
+                margin: 0 0.5rem;
+            }
+
+            .partnership-offer {
+                background: rgba(255, 255, 255, 0.9);
+                border-radius: 16px;
+                padding: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+                border: 1px solid rgba(37, 99, 235, 0.1);
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+            }
+
+            .offer-text {
+                font-size: 1.2rem;
+                color: var(--text-color);
+                text-align: center;
+                margin-bottom: 2rem;
+                line-height: 1.5;
+            }
+
+            .offer-details {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .offer-point:nth-child(4),
+            .offer-point:nth-child(5) {
+                grid-column: 2 span 1;
+            }
+
+            .offer-point {
+                position: relative;
+                padding: 1.5rem;
+                background: white;
+                border-radius: 12px;
+                border: 1px solid rgba(37, 99, 235, 0.1);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                overflow: hidden;
+            }
+
+            .point-icon {
+                font-size: 1.5rem;
+                margin-bottom: 0.75rem;
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                display: inline-block;
+            }
+
+            .offer-point h3 {
+                color: var(--primary-color);
+                font-size: 1.1rem;
+                margin-bottom: 0.75rem;
+                font-weight: 600;
+            }
+
+            .offer-point p {
+                color: var(--text-color);
+                font-size: 0.95rem;
+                line-height: 1.4;
+            }
+
+            .hover-info {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                padding: 0.75rem;
+                background: linear-gradient(to top, rgba(255, 255, 255, 0.95), transparent);
+                transform: translateY(100%);
+                transition: transform 0.3s ease;
+                text-align: center;
+            }
+
+            .info-text {
+                color: var(--primary-color);
+                font-weight: 500;
+                font-size: 0.9rem;
+            }
+
+            .offer-point.highlight-point::after {
+                content: '★ Premium';
+                position: absolute;
+                top: 0.75rem;
+                right: 0.75rem;
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                color: white;
+                padding: 0.25rem 0.6rem;
+                border-radius: 12px;
+                font-size: 0.75rem;
+                font-weight: 500;
+            }
+
+            /* Extra kleine Geräte (Phones, 600px and down) */
+            @media only screen and (max-width: 600px) {
+                .features-section-title {
+                    font-size: 1.8rem;
+                }
+
+                .offer-text {
+                    font-size: 1rem;
+                    margin-bottom: 1.5rem;
+                }
+
+                .partnership-offer {
+                    padding: 1rem;
+                }
+
+                .offer-point {
+                    padding: 1rem;
+                }
+
+                .offer-details {
+                    grid-template-columns: 1fr;
+                }
+
+                .point-icon {
+                    font-size: 1.3rem;
+                }
+
+                .offer-point h3 {
+                    font-size: 1rem;
+                }
+
+                .offer-point p {
+                    font-size: 0.9rem;
+                }
+            }
+
+            /* Kleine Geräte (portrait tablets and large phones, 600px and up) */
+            @media only screen and (min-width: 600px) {
+                .offer-details {
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                }
+            }
+
+            /* Medium Geräte (landscape tablets, 768px and up) */
+            @media only screen and (min-width: 768px) {
+                .features-section-title {
+                    font-size: 2rem;
+                }
+
+                .partnership-offer {
+                    padding: 2rem;
+                }
+            }
+
+            /* Große Geräte (laptops/desktops, 992px and up) */
+            @media only screen and (min-width: 992px) {
+                .features-container {
+                    padding: 2rem;
+                }
+
+                .offer-details {
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                }
+            }
+
+            /* Extra große Geräte (large laptops and desktops, 1200px and up) */
+            @media only screen and (min-width: 1200px) {
+                .features-section-title {
+                    font-size: 2.5rem;
+                }
+            }
+
+            @media only screen and (max-width: 992px) {
+                .offer-details {
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                }
+
+                .offer-point:nth-child(4),
+                .offer-point:nth-child(5) {
+                    grid-column: auto;
+                }
+            }
+
+            [data-aos] {
+                opacity: 0;
+                transform: translateY(15px);
+                transition: opacity 0.4s ease, transform 0.4s ease;
+            }
+
+            [data-aos].aos-animate {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        </style>
+
+        <script>
+            // Simple AOS (Animate On Scroll) implementation
+            document.addEventListener('DOMContentLoaded', () => {
+                const observerOptions = {
+                    threshold: 0.1
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('aos-animate');
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('[data-aos]').forEach(element => {
+                    observer.observe(element);
+                    
+                    // Add delay
+                    const delay = element.getAttribute('data-aos-delay');
+                    if (delay) {
+                        element.style.transitionDelay = `${delay}ms`;
+                    }
+                });
+            });
+        </script>
+    </section>
+
+    <section class="why-us section" id="why-us">
+        <div class="why-us-container">
+            <div class="section-header">
+                <h2 class="section-title">Warum ElderCarePlus?</h2>
+                <p class="section-subtitle">Moderne Pflegesoftware neu gedacht</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">👥</div>
+                    <h3>Patientenmanagement</h3>
+                    <p>Listen- oder Tabellenansicht für optimale Übersicht. Einfaches Hinzufügen und Verwalten von Patientendaten.</p>
+                    <div class="vs-badge">
+                        <span>VS.</span>
+                        <p>Komplexe, unübersichtliche Patientenakten</p>
+                    </div>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">📅</div>
+                    <h3>Schichtplanung</h3>
+                    <p>Intuitive Verwaltung von Zeitplänen. Einfacher Zugriff für alle Pflegekräfte von jedem Gerät.</p>
+                    <div class="vs-badge">
+                        <span>VS.</span>
+                        <p>Umständliche Dienstplangestaltung</p>
+                    </div>
+                </div>
+
+                <div class="feature-card highlight" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">🤖</div>
+                    <h3>KI-Krankenschwester</h3>
+                    <p>24/7 KI-gestützter Assistent für sofortige medizinische Auskunft und Pflegetipps.</p>
+                    <div class="vs-badge">
+                        <span>VS.</span>
+                        <p>Keine KI-Unterstützung verfügbar</p>
+                    </div>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">📋</div>
+                    <h3>Pflegebericht</h3>
+                    <p>Effiziente digitale Dokumentation mit intelligenten Textbausteinen und automatischer Speicherung.</p>
+                    <div class="vs-badge">
+                        <span>VS.</span>
+                        <p>Zeitaufwändige manuelle Dokumentation</p>
+                    </div>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon">✅</div>
+                    <h3>Aufgabenmanagement</h3>
+                    <p>Klare Arbeitsabläufe und Aufgabenverfolgung für effiziente Pflege und Teamkoordination.</p>
+                    <div class="vs-badge">
+                        <span>VS.</span>
+                        <p>Unübersichtliche To-Do Listen</p>
+                    </div>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon">💊</div>
+                    <h3>Medikamente</h3>
+                    <p>Digitaler Medikamentenplan mit Erinnerungen und automatischer Wechselwirkungsprüfung.</p>
+                    <div class="vs-badge">
+                        <span>VS.</span>
+                        <p>Fehleranfällige Medikamentenverwaltung</p>
+                    </div>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="700">
+                    <div class="feature-icon">❤️</div>
+                    <h3>Gesundheitsbereich</h3>
+                    <p>Umfassende Verwaltung von Vitalwerten, Ernährung und individuellen Pflegeplänen.</p>
+                    <div class="vs-badge">
+                        <span>VS.</span>
+                        <p>Getrennte, unverbundene Systeme</p>
+                    </div>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="800">
+                    <div class="feature-icon">📚</div>
+                    <h3>Ressourcen & Support</h3>
+                    <p>Integrierte Tutorials und Anleitungen. Persönlicher Support bei Fragen.</p>
+                    <div class="vs-badge">
+                        <span>VS.</span>
+                        <p>Kostenpflichtige Schulungen nötig</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section" data-aos="fade-up" data-aos-delay="900">
+                <div class="cta-box">
+                    <h3>Kostenlos testen!</h3>
+                    <p>14 Tage unverbindlich und ohne Einschränkungen testen.</p>
+                    <div class="price-tag">Bis zu 70% günstiger als herkömmliche Systeme</div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .why-us {
+                background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+                min-height: 100vh;
+                padding: 4rem 1rem;
+            }
+
+            .why-us-container {
                 max-width: 1400px;
                 margin: 0 auto;
-                padding: 2rem;
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.2rem;
+                color: var(--text-color);
+                opacity: 0.8;
             }
 
             .features-grid {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1.5rem;
                 margin-bottom: 3rem;
             }
 
             .feature-card {
                 background: white;
-                padding: 2rem;
-                border-radius: 20px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-                transition: all 0.3s ease;
+                padding: 1.5rem;
+                border-radius: 16px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
                 border: 1px solid rgba(37, 99, 235, 0.1);
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
             }
 
             .feature-card:hover {
                 transform: translateY(-5px);
-                box-shadow: 0 15px 35px rgba(37, 99, 235, 0.1);
+                box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
+            }
+
+            .feature-card.highlight {
+                background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(37, 99, 235, 0.02));
+                border: 2px solid rgba(37, 99, 235, 0.2);
             }
 
             .feature-icon {
-                width: 50px;
-                height: 50px;
-                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-                border-radius: 12px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                font-size: 2rem;
                 margin-bottom: 1rem;
-                color: white;
-                font-size: 1.5rem;
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
             }
 
             .feature-card h3 {
-                color: var(--secondary-color);
-                font-size: 1.4rem;
-                margin-bottom: 1rem;
+                color: var(--primary-color);
+                font-size: 1.2rem;
+                margin-bottom: 0.75rem;
+                font-weight: 600;
             }
 
             .feature-card p {
+                color: var(--text-color);
+                font-size: 0.95rem;
+                line-height: 1.5;
+                margin-bottom: 2rem;
+            }
+
+            .vs-badge {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 0.75rem;
+                background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.9) 20%);
+                font-size: 0.9rem;
+            }
+
+            .vs-badge span {
+                color: var(--primary-color);
+                font-weight: 600;
+                margin-right: 0.5rem;
+            }
+
+            .vs-badge p {
                 color: #64748b;
-                line-height: 1.8;
-                font-size: 1rem;
+                font-size: 0.85rem;
+                margin: 0;
+                font-style: italic;
             }
 
-            .category-title {
-                font-size: 2rem;
-                color: var(--secondary-color);
+            .cta-section {
                 text-align: center;
-                margin: 3rem 0 2rem 0;
+                margin-top: 4rem;
             }
 
-            /* Entfernen aller Blur-Effekte */
-            .intro-text, 
-            .highlight-box, 
-            .feature-card, 
-            .benefit-item, 
-            .partnership-content, 
-            .progress-dots, 
-            .nav-btn {
-                backdrop-filter: none;
-                -webkit-backdrop-filter: none;
+            .cta-box {
+                background: white;
+                padding: 2rem;
+                border-radius: 16px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+                display: inline-block;
             }
 
-            /* Responsive Design */
+            .cta-box h3 {
+                color: var(--primary-color);
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .price-tag {
+                display: inline-block;
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+                font-weight: 500;
+                margin-top: 1rem;
+            }
+
             @media (max-width: 768px) {
+                .why-us {
+                    padding: 2rem 1rem;
+                }
+
+                .section-title {
+                    font-size: 2rem;
+                }
+
                 .features-grid {
                     grid-template-columns: 1fr;
                 }
+
+                .feature-card {
+                    padding: 1.25rem;
+                }
+
+                .feature-icon {
+                    font-size: 1.5rem;
+                }
+
+                .feature-card h3 {
+                    font-size: 1.1rem;
+                }
+
+                .feature-card p {
+                    font-size: 0.9rem;
+                }
+
+                .cta-box {
+                    padding: 1.5rem;
+                    width: 100%;
+                }
             }
         </style>
-    </section>
-
-    <section class="why-us section" id="why-us">
-        <h2 class="section-title">Warum ElderCarePlus?</h2>
-        <div class="benefits-grid">
-            <div class="benefit-item">
-                <h3>Unschlagbarer Preis</h3>
-                <p>Bis zu 70% günstiger als die Konkurrenz. Faire Abrechnung nach Patientenanzahl.</p>
-            </div>
-            <div class="benefit-item">
-                <h3>Einfache Bedienung</h3>
-                <p>Intuitiv und selbsterklärend. Minimale Einarbeitungszeit für Ihre Mitarbeiter.</p>
-            </div>
-            <div class="benefit-item">
-                <h3>Alles inklusive</h3>
-                <p>Keine versteckten Kosten oder Zusatzmodule. Sie erhalten sofort Zugriff auf alle Funktionen.</p>
-            </div>
-            <div class="benefit-item">
-                <h3>Überall verfügbar</h3>
-                <p>Nutzen Sie die Software auf allen Geräten - iOS, Android und im Browser.</p>
-            </div>
-            <div class="benefit-item">
-                <h3>Kostenlose Migration</h3>
-                <p>Unkomplizierter Wechsel: Wir übernehmen die komplette Datenübernahme für Sie.</p>
-            </div>
-            <div class="benefit-item">
-                <h3>Persönlicher Support</h3>
-                <p>Direkter Support und kostenlose Einweisung vor Ort im Raum München.</p>
-            </div>
-        </div>
     </section>
 
     <section class="partnership section" id="partnership">
